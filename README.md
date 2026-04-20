@@ -8,6 +8,8 @@
 
 Production-grade **NestJS + Postgres + Drizzle + JWT + Groq AI** starter. One command to boot — open the template, clone, `pnpm dev`, and you have a documented, tested, typed, auth'd API running in under a minute.
 
+![Swagger UI — auth, ai and health endpoints](./docs/swagger.png)
+
 ## Quick start
 
 ```bash
