@@ -141,9 +141,9 @@ docker-compose.yml            # Postgres 16 with healthcheck
 
 ## About the author / Sobre el autor
 
-**EN** — Built by **Federico Cione**, a backend engineer from Argentina. I build typed, tested, AI-integrated backends for product teams. Available for **Backend MVP con IA** engagements (USD 1500–4000, 3–4 weeks). [Book a discovery call →](https://fedecione.dev#contact)
+**EN** — Built by **Federico Cione**, a backend engineer from Argentina. I build typed, tested, AI-integrated backends for product teams. Available for **Backend MVP con IA** engagements (USD 1500–4000, 3–4 weeks). [Book a discovery call →](https://fedecione-portfolio.vercel.app/#contact)
 
-**ES** — Hecho por **Federico Cione**, desarrollador backend argentino. Construyo backends tipados, testeados y con IA integrada para equipos de producto. Disponible para paquetes **Backend MVP con IA** (USD 1500–4000, 3–4 semanas). [Agendá una llamada →](https://fedecione.dev#contact)
+**ES** — Hecho por **Federico Cione**, desarrollador backend argentino. Construyo backends tipados, testeados y con IA integrada para equipos de producto. Disponible para paquetes **Backend MVP con IA** (USD 1500–4000, 3–4 semanas). [Agendá una llamada →](https://fedecione-portfolio.vercel.app/#contact)
 
 ## License
 
