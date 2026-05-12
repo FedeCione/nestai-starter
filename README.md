@@ -6,7 +6,7 @@
 [![Postgres](https://img.shields.io/badge/postgres-16-4169e1?logo=postgresql&logoColor=white)](https://www.postgresql.org)
 [![License: MIT](https://img.shields.io/badge/license-MIT-brightgreen.svg)](./LICENSE)
 
-Production-grade **NestJS + Postgres + Drizzle + JWT + Groq AI** starter. One command to boot — open the template, clone, `pnpm dev`, and you have a documented, tested, typed, auth'd API running in under a minute.
+Production-grade **NestJS + Postgres + Drizzle + JWT + Groq AI** starter. One command to boot — open the template, clone, `pnpm dev:fresh`, and you have a documented, tested, typed, auth'd API running in under a minute.
 
 ![Swagger UI — auth, ai and health endpoints](./docs/swagger.png)
 
@@ -17,12 +17,12 @@ gh repo create my-backend --template FedeCione/nestai-starter --public --clone
 cd my-backend
 cp .env.example .env
 pnpm install
-pnpm dev
+pnpm dev:fresh
 ```
 
 Then open [http://localhost:3000/docs](http://localhost:3000/docs) for Swagger UI.
 
-`pnpm dev` spins up Postgres in Docker, runs migrations, and starts the API in watch mode — nothing else to configure.
+`pnpm dev:fresh` runs `setup` (Postgres in Docker + migrations) and then `dev` (API in watch mode). On subsequent runs, just `pnpm dev` — it skips the DB boot and migration step. Run `pnpm setup` again whenever you pull new migrations.
 
 ## Architecture
 
@@ -38,7 +38,7 @@ flowchart LR
 
 - **NestJS 11** with strict TypeScript and a clean module layout (`auth`, `ai`, `common`, `config`, `database`, `health`).
 - **Drizzle ORM** + `drizzle-kit` migrations, `postgres-js` driver. Schema at `src/database/schema.ts`.
-- **Docker Compose** for local Postgres. `pnpm dev` boots the DB, runs migrations, and hot-reloads the API.
+- **Docker Compose** for local Postgres. `pnpm setup` boots the DB and runs migrations; `pnpm dev` hot-reloads the API.
 - **JWT auth** (`@nestjs/jwt` + Passport) with `bcrypt` password hashing (10 rounds).
 - **Zod DTOs** with a tiny `ZodValidationPipe` — one source of truth for types *and* validation.
 - **Groq SDK** for `/ai/generate`. Optional: with no `GROQ_API_KEY` set, the endpoint returns a canned demo response so the template runs out of the box.
@@ -94,6 +94,7 @@ All errors — from Zod, guards, services, or unhandled exceptions — are norma
 | `RATE_LIMIT_WINDOW_MS` | no       | `3600000` (1h)              | Global rate-limit window                             |
 | `RATE_LIMIT_MAX`       | no       | `60`                        | Requests per window per identity (user id or IP)     |
 | `ALLOWED_ORIGINS`      | no       | `""`                        | Comma-separated origin allow-list; empty = same-origin |
+| `TRUST_PROXY`          | no       | `false`                     | Express `trust proxy`. `false` = socket IP (safe default); `1` = one reverse proxy; `true` = trust all hops |
 
 Env is parsed through a Zod schema (`src/config/env.schema.ts`) at boot — misconfiguration fails fast with a readable error.
 

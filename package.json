@@ -15,7 +15,9 @@
   },
   "packageManager": "pnpm@10.33.0",
   "scripts": {
-    "dev": "pnpm db:up && pnpm db:migrate && nest start --watch",
+    "dev": "nest start --watch",
+    "dev:fresh": "pnpm setup && pnpm dev",
+    "setup": "pnpm db:up && pnpm db:migrate",
     "db:up": "docker compose up -d db --wait",
     "db:down": "docker compose down",
     "db:generate": "drizzle-kit generate",
@@ -88,6 +90,9 @@
       "@swc/core",
       "bcrypt",
       "esbuild"
-    ]
+    ],
+    "overrides": {
+      "tar": "^7.5.11"
+    }
   }
 }
