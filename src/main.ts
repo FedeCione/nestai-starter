@@ -13,6 +13,11 @@ async function bootstrap() {
   const logger = new Logger('bootstrap');
   const config = app.get(ConfigService<Env, true>);
 
+  app
+    .getHttpAdapter()
+    .getInstance()
+    .set('trust proxy', config.get('TRUST_PROXY', { infer: true }));
+
   app.use(
     helmet({
       contentSecurityPolicy:

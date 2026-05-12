@@ -13,6 +13,15 @@ export const envSchema = z.object({
   RATE_LIMIT_WINDOW_MS: z.coerce.number().int().positive().default(3_600_000),
   RATE_LIMIT_MAX: z.coerce.number().int().positive().default(60),
   ALLOWED_ORIGINS: z.string().default(''),
+  TRUST_PROXY: z
+    .string()
+    .default('false')
+    .transform((v) => {
+      if (v === 'false' || v === '') return false;
+      if (v === 'true') return true;
+      const n = Number(v);
+      return Number.isFinite(n) && n >= 0 ? n : v;
+    }),
 });
 
 export type Env = z.infer<typeof envSchema>;
